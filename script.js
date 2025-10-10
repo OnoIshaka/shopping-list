@@ -72,9 +72,24 @@ function checkUI() {
 	}
 }
 
+function filterItems(e) {
+	const checkItem = e.target.value.toLowerCase();
+	const items = itemList.querySelectorAll("li");
+
+	items.forEach((item) => {
+		const itemName = item.firstChild.textContent.toLowerCase();
+
+		if (itemName.indexOf(checkItem) != -1) {
+			item.style.display = "flex";
+		} else {
+			item.style.display = "none";
+		}
+	});
+}
 //Event Listeners
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 clearBtn.addEventListener("click", clearItems);
+itemFilter.addEventListener("input", filterItems);
 
 checkUI();
